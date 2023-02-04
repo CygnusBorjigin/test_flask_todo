@@ -35,6 +35,11 @@ def list_users():
     todo_list_collections = database_connect.connect("todo_list", "user_info")
     collection_list = todo_list_collections.find({})
     for x in collection_list:
+        hashed = x["userPassword"]
+
         print(x)
+
     return str(collection_list)
+
+
 
