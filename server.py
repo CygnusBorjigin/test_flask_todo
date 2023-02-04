@@ -3,7 +3,6 @@ from pymongo import MongoClient
 from flask import request
 import json
 import certifi
-import datetime
 from ast import literal_eval
 
 
