@@ -1,11 +1,8 @@
-from flask import Flask
-from pymongo import MongoClient
-from flask import request
-import json
-import certifi
-import datetime
-from ast import literal_eval
 from helper_functions import *
+from ast import literal_eval
+from flask import request
+from flask import Flask
+import bcrypt
 
 
 app = Flask(__name__)
@@ -25,6 +22,11 @@ def user_signup():
     raw_data = request.data
     my_dict = literal_eval(raw_data.decode('utf-8'))
     todo_list_collections = database_connect.connect("todo_list", "user_info")
+
+    # hash the password
+    salt = bcrypt.gensalt()
+    my_dict['userPassword'] = bcrypt.hashpw(bytes(my_dict['userPassword'], 'utf-8'), salt)
+
     todo_list_collections.insert_one(my_dict)
     return "this is signup"
 
