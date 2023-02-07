@@ -35,9 +35,21 @@ def user_signup():
 def list_users():
     todo_list_collections = database_connect.connect("todo_list", "user_info")
     collection_list = todo_list_collections.find({})
+<<<<<<< HEAD
 
     user_list = []
     for i in collection_list:
         user_list.append(i)
 
     return json.loads(json_util.dumps(user_list))
+=======
+    for x in collection_list:
+        hashed = x["userPassword"]
+
+        print(x)
+
+    return str(collection_list)
+
+
+
+>>>>>>> eb2248680ececfa1f46c8a8b06ce5e0dfd88e964
