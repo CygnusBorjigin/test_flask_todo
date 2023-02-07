@@ -1,9 +1,10 @@
 import json
 from bson import json_util
-from test_flask_todo.pkg.database_connection import *
 from ast import literal_eval
 from flask import Flask, request
 import bcrypt
+
+from pkg.database_connection import database_connect
 from .pkg.user_management.main import UserManagement
 
 
