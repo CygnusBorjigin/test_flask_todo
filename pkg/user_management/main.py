@@ -1,3 +1,5 @@
+import json
+from bson import json_util
 from ast import literal_eval
 
 from ..database_connection import *
@@ -16,4 +18,8 @@ class UserManagement:
         # do error management
 
     def list_user(self):
-        pass
+        collection_list = self.connection.find({})
+        user_list = []
+        for i in collection_list:
+            user_list.append(i)
+        return json.loads(json_util.dumps(user_list))

@@ -28,20 +28,16 @@ def count_document():
 def user_signup():
     raw_data = request.data
     u_m = UserManagement()
-
     u_m.add_user(raw_data)
 
-    # hash the password
 
     return "this is signup"
 
 
 @app.route("/listusers")
 def list_users():
-    todo_list_collections = database_connect.connect("todo_list", "user_info")
-    collection_list = todo_list_collections.find({})
-    user_list = []
-    for i in collection_list:
-        user_list.append(i)
+    u_m = UserManagement()
+    return u_m.list_user()
 
-    return json.loads(json_util.dumps(user_list))
+
+
