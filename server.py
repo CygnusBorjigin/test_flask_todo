@@ -5,18 +5,20 @@ from ast import literal_eval
 from flask import Flask, request, jsonify
 import bcrypt
 
-
 app = Flask(__name__)
+
 
 @app.route("/")
 def still_working():
     database_connect.connect("todo_list", "test_todo")
     return "still working"
 
+
 @app.route("/document_count")
 def count_document():
     todo_list_collections = database_connect.connect("todo_list", "test_todo")
     return str(todo_list_collections.count_documents({})) + "\n"
+
 
 @app.route("/signup")
 def user_signup():
@@ -30,6 +32,7 @@ def user_signup():
 
     todo_list_collections.insert_one(my_dict)
     return "this is signup"
+
 
 @app.route("/listusers")
 def list_users():
