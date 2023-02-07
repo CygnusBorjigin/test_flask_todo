@@ -1,7 +1,8 @@
+import json
+from bson import json_util
 from helper_functions import *
 from ast import literal_eval
-from flask import request
-from flask import Flask
+from flask import Flask, request, jsonify
 import bcrypt
 
 
@@ -34,6 +35,9 @@ def user_signup():
 def list_users():
     todo_list_collections = database_connect.connect("todo_list", "user_info")
     collection_list = todo_list_collections.find({})
-    for x in collection_list:
-        print(x)
-    return str(collection_list)
+
+    user_list = []
+    for i in collection_list:
+        user_list.append(i)
+
+    return json.loads(json_util.dumps(user_list))
