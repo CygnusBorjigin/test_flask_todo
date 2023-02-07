@@ -1,11 +1,15 @@
 import json
 from bson import json_util
-from helper_functions import *
+from test_flask_todo.pkg.database_connection import *
 from ast import literal_eval
-from flask import Flask, request, jsonify
+from flask import Flask, request
 import bcrypt
+from .pkg.user_management.main import UserManagement
+
 
 app = Flask(__name__)
+
+
 
 
 @app.route("/")
@@ -23,14 +27,12 @@ def count_document():
 @app.route("/signup")
 def user_signup():
     raw_data = request.data
-    my_dict = literal_eval(raw_data.decode('utf-8'))
-    todo_list_collections = database_connect.connect("todo_list", "user_info")
+    u_m = UserManagement()
+
+    u_m.add_user(raw_data)
 
     # hash the password
-    salt = bcrypt.gensalt()
-    my_dict['userPassword'] = bcrypt.hashpw(bytes(my_dict['userPassword'], 'utf-8'), salt)
 
-    todo_list_collections.insert_one(my_dict)
     return "this is signup"
 
 
