@@ -1,8 +1,7 @@
 import json
+from ..get_enviroment_variable.get_env_variable import get_var
+
 
 def api_key():
-    config_file = open("./config.json", "r")
-    content = json.load(config_file)
-    apiKey = content["mongoDBConnection"]
-    config_file.close()
-    return apiKey
+    key = get_var("mongoDBConnection")
+    return key
