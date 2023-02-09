@@ -1,6 +1,6 @@
 # UserManagagement Class
 
-The user management class is in the Main.py in the user_management folder. 
+The user management class is in the Main.py in the user_management folder. A UserManagement object will be able to add users to the database and list all the users. 
 
 ## Imports
 
@@ -28,7 +28,7 @@ It uses the _connection attribute to search (without a filter) the database and 
 
 ## How to use
 
-#### First import the package
+#### First import the package and install dependencies
 Example import:
 
 `from .pkg.user_management.main import UserManagement`
