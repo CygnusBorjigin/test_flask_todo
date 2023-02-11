@@ -1,16 +1,7 @@
-import jwt
-import datetime
-import json
-import bcrypt
-
-from ast import literal_eval
 from flask import Flask, request
-from bson import json_util
 
 from .pkg.database_connection.database_connect import connect
 from .pkg.user_management.main import UserManagement
-from .pkg.get_enviroment_variable.get_env_variable import get_var
-
 
 app = Flask(__name__)
 
